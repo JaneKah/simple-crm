@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
 
 import { DialogEditAddressComponent } from './dialog-edit-address.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from 'src/environments/environment';
 
 describe('DialogEditAddressComponent', () => {
   let component: DialogEditAddressComponent;
@@ -8,7 +13,13 @@ describe('DialogEditAddressComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DialogEditAddressComponent ]
+      declarations: [ DialogEditAddressComponent ],
+      imports: [AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, MatDialogModule],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        }]
     })
     .compileComponents();
 
